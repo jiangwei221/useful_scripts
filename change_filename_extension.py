@@ -5,6 +5,7 @@ Change the filename extension(suffix) of files under one directory
 import argparse
 import os
 
+
 def confirm(question='OK to continue?'):
     """
     Ask user to enter Y or N (case-insensitive).
@@ -19,7 +20,7 @@ def confirm(question='OK to continue?'):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--files_dir', required=True, type=str, help='the containing directory of files need to be renmaed')
+    parser.add_argument('--files_dir', required=True, type=str, help='the containing directory of files need to be renamed')
     parser.add_argument('--source_ext', required=True, type=str, help='original extension name')
     parser.add_argument('--target_ext', required=True, type=str, help='target extension name')
     parser.add_argument('--recursive', action='store_true', default=False, help='rename the files under subdirectory')
@@ -38,8 +39,8 @@ def main():
         for file in sorted(files):
             if file.endswith(opt.source_ext):
                 source_path = os.path.join(cur, file)
-                target_path = os.path.join(cur, file[0:-len(opt.source_ext)]+opt.target_ext)
-                print('{0} -> {1}'.format(source_path, file[0:-len(opt.source_ext)]+opt.target_ext))
+                target_path = os.path.join(cur, file[0:-len(opt.source_ext)] + opt.target_ext)
+                print('{0} -> {1}'.format(source_path, file[0:-len(opt.source_ext)] + opt.target_ext))
                 source_path_list.append(source_path)
                 target_path_list.append(target_path)
                 renaming_counter += 1
@@ -59,6 +60,7 @@ def main():
         os.rename(source_path, target_path)
 
     print('Above renaming is done')
+
 
 if __name__ == "__main__":
     main()
