@@ -24,7 +24,7 @@ def title_to_paper_link(title):
     return paper_link
 
 
-def title_to_code(title):
+def title_to_code_link(title):
     try:
         code_gen = googlesearch.search(title + 'github', num=10, stop=1, domains=CODE_DOMAINS, user_agent=googlesearch.get_random_user_agent())
         code_link = next(itertools.islice(code_gen, 0, None))
@@ -41,7 +41,7 @@ def main():
     opt = parser.parse_args()
 
     paper_link = title_to_paper_link(opt.title)
-    code_link = title_to_code(opt.title)
+    code_link = title_to_code_link(opt.title)
     print('Paper: {0}'.format(paper_link))
     print('Code: {0}'.format(code_link))
 
