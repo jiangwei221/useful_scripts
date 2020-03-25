@@ -11,7 +11,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--source_file', required=True, type=str, help='the source file')
     parser.add_argument('--save_to_file', required=True, type=str, help='save to')
-    parser.add_argument('--num_lines', type=int, default=1, help='target extension name')
+    parser.add_argument('--num_lines', type=int, default=1, help='how many lines needed')
 
     opt = parser.parse_args()
 
@@ -26,7 +26,7 @@ def main():
             if i in lines_index:
                 outfile.write(line)
 
-    print('In total {0} random lines are selected from {1} and written to {2}'.format(opt.num_lines, os.path.basename(opt.source_file), os.path.basename(opt.save_to_file)))
+    print(f'In total {opt.num_lines} random lines are selected from {os.path.basename(opt.source_file)} and written to {os.path.basename(opt.save_to_file)}')
 
 
 if __name__ == "__main__":
