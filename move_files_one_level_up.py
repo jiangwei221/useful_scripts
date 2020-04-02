@@ -36,7 +36,10 @@ def main():
     for cur, dirs, files in os.walk(opt.tear_down_dir):
         for file in sorted(files):
             source_path = os.path.join(cur, file)
-            target_path = source_path.replace(opt.tear_down_dir + '/', opt.tear_down_dir + '_')
+            if opt.add_prefix:
+                target_path = source_path.replace(opt.tear_down_dir + '/', opt.tear_down_dir + '_')
+            else:
+                target_path = source_path.replace(opt.tear_down_dir,  os.path.dirname(opt.tear_down_dir ))
             print(f'{source_path} -> {target_path}')
             source_path_list.append(source_path)
             target_path_list.append(target_path)
