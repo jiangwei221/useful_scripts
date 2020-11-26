@@ -1,5 +1,5 @@
 '''
-Save video frames to a folder
+Find closest images
 '''
 
 import argparse
