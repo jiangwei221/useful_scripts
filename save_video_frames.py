@@ -19,6 +19,7 @@ def main():
     parser.add_argument('--height',  required=False, type=int, default=-1, help='target frame height')
     parser.add_argument('--width',   required=False, type=int, default=-1, help='target frame width')
     parser.add_argument('--every_k', required=False, type=int, default=1,  help='save if frame_id %% every_k == 0')
+    parser.add_argument('--skip_frames', required=False, type=int, default=0,  help='skip first k frames')
 
     opt = parser.parse_args()
     assert ((opt.height > 0) and (opt.width > 0)) or ((opt.height == -1) and (opt.width == -1))
@@ -35,6 +36,8 @@ def main():
         success, image = video_cap.read()
         if not success:
             break
+        if i < opt.skip_frames:
+            continue
         if i % opt.every_k != 0:
             continue
         pil_image = Image.fromarray(np.uint8(image[..., ::-1]))
